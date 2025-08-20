@@ -1,0 +1,116 @@
+.union_wrap { 
+
+        .text {
+            color: var(--orange);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .table {
+                position: relative;
+                margin-bottom: 20px;
+
+                p {
+                    margin-bottom: 4px;
+                }
+            }
+
+            .selection {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+
+                .text {
+                    color: var(--black);
+                }
+
+                .dropdown {
+                    width: 290px;
+
+                }
+
+                .dropdown-menu {
+                    width: 320px;
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    background-color: var(--white);
+                    top: 40px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.45);
+                    z-index: 999;
+                    overflow: hidden;
+                    transform: translateY(-10px);
+                    max-height: 0;
+                    opacity: 0;
+                    transition: all 0.25s ease;
+
+                    .dropdown-item {
+                        padding: 12px 16px;
+                        height: 45px;
+                        gap: 8px;
+                        align-self: stretch;
+
+                        &:hover {
+                            background-color: var(--orange);
+                        }
+                    }
+
+                    &.open {
+                        transform: translateY(0px);
+                        max-height: 1000px;
+                        opacity: 1;
+                    }
+
+                }
+
+                .icon {
+                    width: 24px;
+                    height: 24px;
+                    position: absolute;
+                    right: 12px;
+                    top: 8px;
+
+                }
+
+                &.target {
+                    width: 320px;
+
+                    .wrap {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        justify-content: left;
+                    }
+
+                    .text {
+                        color: var(--orange);
+                        width: 320px;
+                        margin-bottom: 4px;
+                    }
+                    p{
+                        text-align: center;
+
+                        display: flex;
+                        padding: 10px;
+                        font-size: 14px;
+                    }
+
+                    .box {
+                        width: 150px;
+                        position: relative;
+
+                    }
+                }
+            }
+
+          
+    }
+
+
+    }

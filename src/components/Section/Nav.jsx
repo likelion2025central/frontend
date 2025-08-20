@@ -17,7 +17,7 @@ const Nav = () => {
                     </div>
                     {who === '학생회' ? (
                         <>
-                            <Link to='/registration'>희망 제휴 등록하기</Link>
+                            <Link to='/register'>희망 제휴 등록하기</Link>
                         </>
                     ) : (
                         <>

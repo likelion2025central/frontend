@@ -1,0 +1,83 @@
+.currentpartner_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .hd {
+        width: inherit;
+        position: absolute;
+        top: 57px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 150%;
+
+        .b_btn {
+            position: absolute;
+            left: 24px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+
+    }
+
+    .list_wrap {
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: relative;
+
+       
+        .button_nomal {
+            height: 75px;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                box-shadow: 0 0 6px 0 #F5A12D;
+                background: var(--white);
+
+                .icon {
+                    width: 24px;
+                    height: 24px;
+                    background: url("../../img/commons/button_detail.svg") no-repeat center;
+                    background-size: contain;
+                }
+            }
+        }
+
+        .info {
+
+            text-align: left;
+            display: flex;
+            line-height: normal;
+            flex-direction: column;
+            gap: 5px;
+
+
+            .tag {
+
+                max-width: 150px;
+                line-height: 26px;
+                height: 26px;
+                padding: 0 8px;
+                font-size: 12px;
+                color: var(--orange);
+                font-weight: 500;
+                background-color: #FFF7E7;
+                border-radius: 6px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: block;
+                white-space: nowrap
+            }
+        }
+    }
+}

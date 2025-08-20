@@ -19,13 +19,13 @@ const Main = () => {
       key: "union",
       title: `‘성신여자대학교 공과대학 컴퓨터공학과’ \n 학생회를 환영합니다!`,
       btn1: { text: "희망 제휴 등록하기", path: "/register" },
-      btn2: { text: "나의 제휴 관리하기", path: "/" },
+      btn2: { text: "나의 제휴 관리하기", path: "/management" },
     },
     {
       key: "shop",
       title: `‘파도의 숲’ \n 사장님을 환영합니다!`,
       btn1: { text: "제휴 등록하기", path: "/register" },
-      btn2: { text: "나의 제휴 관리하기", path: "/" },
+      btn2: { text: "나의 제휴 관리하기", path: "/management" },
     },
   ];
 

@@ -7,3 +7,10 @@
 
 // section
 @use "section/section";
+
+@use "management/mancommon";
+@use "management/regpart";
+@use "management/curpart";
+@use "management/editdocx";
+
+@use "recommend/recommend";

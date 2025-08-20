@@ -1,0 +1,94 @@
+.editdocx_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+
+    .b_btn {
+        z-index: 1000;
+    }
+
+    .hd {
+        width: inherit;
+        position: absolute;
+        top: 57px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 150%;
+
+        .b_btn {
+            position: absolute;
+            left: 24px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+
+    }
+
+    .content {
+        width: 320px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 0 auto;
+
+    }
+
+    .modal {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+
+        .wrap {
+            width: 300px;
+            height: 180px;
+            background-color: var(--white);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            p {
+                font-size: 16px;
+
+                font-weight: 700;
+            }
+
+            .btns {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+
+                .btn {
+                    width: 100px;
+                    height: 40px;
+                    border-radius: 10px;
+                    background-color: var(--gray);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 14px;
+                    font-weight: 700;
+                    &:hover {
+                        background-color: var(--orange);
+                    }
+                }
+            }
+        }
+    }
+}

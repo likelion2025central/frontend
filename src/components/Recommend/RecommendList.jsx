@@ -12,6 +12,8 @@ import Exam from "../../assets/img/manage/exam.png"
 import CheckOff from "../../assets/img/commons/button_check_off.svg"
 import CheckOn from "../../assets/img/commons/button_check.svg"
 
+import SendRequest from './SendRequest'
+import Modal from './Modal'  
 const RecommendList = () => {
   const partners = [
     { cate: "카페", name: "론도", rate: "100%" },
@@ -23,6 +25,8 @@ const RecommendList = () => {
   ]
 
   const [checked, setChecked] = useState(Array(partners.length).fill(false))
+  const [showRequest, setShowRequest] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const toggleCheck = (index) => {
     setChecked((prev) => {
@@ -35,6 +39,15 @@ const RecommendList = () => {
   const pages = []
   for (let i = 0; i < partners.length; i += 3) {
     pages.push(partners.slice(i, i + 3))
+  }
+
+  const handleRequest = () => {
+    const count = checked.filter(Boolean).length
+    if (count > 0) {
+      setShowRequest(true)
+    } else {
+      alert("제휴사를 하나 이상 선택해주세요.")
+    }
   }
 
   return (
@@ -93,9 +106,24 @@ const RecommendList = () => {
         </div>
       </div>
 
-      <div className="button_nomal">
+      <div className="button_nomal" onClick={handleRequest}>
         제휴 요청하기
       </div>
+
+      {showRequest && (
+        <SendRequest
+          count={checked.filter(Boolean).length}
+          onClose={() => setShowRequest(false)}
+          onConfirm={() => {
+            setShowRequest(false)
+            setShowSuccess(true) 
+          }}
+        />
+      )}
+
+      {showSuccess && (
+        <Modal onClose={() => setShowSuccess(false)} />
+      )}
     </div>
   )
 }

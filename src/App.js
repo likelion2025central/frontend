@@ -8,6 +8,8 @@ import RegPart from './components/Management/RegPart'
 import CurPart from './components/Management/CurPart'
 import EditDocx from './components/Management/EditDocx'
 import RecommendList from './components/Recommend/RecommendList'
+import UnionDetail from './components/Management/UnionDetail'
+import ShopDetail from './components/Management/ShopDetail'
 
 
 const App = () => {
@@ -20,10 +22,13 @@ const App = () => {
         <Route path='/management' element={<Management />} />
         <Route path='/management/regpart' element={<RegPart />} />
         <Route path='/management/currentpartner/:id?' element={<CurPart />} />
+         <Route path='/management/uniondetail/:id?' element={<UnionDetail />} />
+                  <Route path='/management/shopdetail/:id?' element={<ShopDetail />} />
         <Route path='/management/editdocx/:id?' element={<EditDocx />} />
         <Route path='/recommendlist' element={<RecommendList />} />
+
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
   )
 }
 

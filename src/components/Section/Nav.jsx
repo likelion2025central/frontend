@@ -17,14 +17,14 @@ const Nav = () => {
                     </div>
                     {who === '학생회' ? (
                         <>
-                            <Link to='/registration'>희망 제휴 등록하기</Link>
+                            <Link to='/'>희망 제휴 등록하기</Link>
                         </>
                     ) : (
                         <>
                             <Link to='/'>제휴 등록하기</Link>
                         </>
                     )}
-                    <Link to='/'>나의 제휴 관리하기</Link>
+                    <Link to='/management'>나의 제휴 관리하기</Link>
                 </div>
             }
         </div>

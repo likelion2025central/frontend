@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Back from "../../assets/img/commons/arrow.svg"
 import { useNavigate } from 'react-router-dom'
-import UnionDetail from './UnionDetail';
-import ShopDetail from './ShopDetail';
+import ManageDetail from './ManageDetail';
+
 
 const CurPart = () => {
   const navigate = useNavigate();
@@ -37,9 +37,7 @@ const CurPart = () => {
           <div className="icon"></div>
         </div>
       </div>
-
-      {roll === 0 && <UnionDetail />}
-      {roll === 1 && <ShopDetail />}
+      {roll && <ManageDetail />}
     </div>
   )
 }

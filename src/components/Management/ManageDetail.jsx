@@ -1,8 +1,8 @@
 import React from 'react'
 
-const UnionDetail = () => {
+const ManageDetail = () => {
   return (
-    <div className='uniondetail_wrap container' >
+    <div className='managedetail_wrap container' >
         <div className="wrap">
             <img src="" alt="" />
             <div className="info">
@@ -39,4 +39,4 @@ const UnionDetail = () => {
   )
 }
 
-export default UnionDetail
+export default ManageDetail

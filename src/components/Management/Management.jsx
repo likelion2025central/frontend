@@ -21,7 +21,7 @@ const Management = () => {
                     등록한 제휴 관리하기
                     <div className="icon" />
                     <img src={Bubble} alt="" className='bubble' /></Link>
-                <Link to="/" className="button_nomal">
+                <Link to="/partnership" className="button_nomal">
                     제휴 현황 보기
                     <div className="icon" /></Link>
             </div>

@@ -1,4 +1,4 @@
-.uniondetail_wrap {
+.managedetail_wrap, .requestdetail_wrap {
     position: absolute;
     z-index: 1000;
     top: 0;
@@ -97,4 +97,8 @@
         }
 
     }
+}
+.requestdetail_wrap{
+    top: 0;
+    position: fixed;
 }

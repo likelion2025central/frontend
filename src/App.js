@@ -10,28 +10,52 @@ import Join_Store from './components/User/Join/Join_Store'
 import Normal from './components/User/Normal/Normal'
 import Normal_Detail from './components/User/Normal/Normal_Detail'
 
+import Main from './components/Section/Main'
+import Management from './components/Management/Management'
+import RegPart from './components/Management/RegPart'
+import CurPart from './components/Management/CurPart'
+import EditDocx from './components/Management/EditDocx'
+import RecommendList from './components/Recommend/RecommendList'
+import ManageDetail from './components/Management/ManageDetail'
+import Partnership from './components/Partnership/Partnership'
+import Register from './components/Register/Register'
+
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Nav />
-            <Routes>
-                <Route path='/' element={<Splash />} />
-                <Route path='/splash_step' element={<Splash_Step />} />
+  return (
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        {/* Splash */}
+        <Route path='/' element={<Splash />} />
+        <Route path='/splash_step' element={<Splash_Step />} />
 
-                {/* login/join */}
-                <Route path='/login' element={<Login />} />
-                <Route path='/join' element={<Join />} />
-                <Route path='/join_student' element={<Join_Student />} />
-                <Route path='/join_store' element={<Join_Store />} />
+        {/* login/join */}
+        <Route path='/login' element={<Login />} />
+        <Route path='/join' element={<Join />} />
+        <Route path='/join_student' element={<Join_Student />} />
+        <Route path='/join_store' element={<Join_Store />} />
 
-                {/* 일반 학생들 사용 */}
-                <Route path='/normal_main' element={<Normal />} />
-                <Route path='/normal_detail/:college/:faculty/:major' element={<Normal_Detail />} />
+        {/* 일반 학생들 사용 */}
+        <Route path='/normal_main' element={<Normal />} />
+        <Route path='/normal_detail/:college/:faculty/:major' element={<Normal_Detail />} />
 
+        {/* main */}
+        <Route path='/main' element={<Main />} />
+        <Route path='/management' element={<Management />} />
+        <Route path='/management/regpart' element={<RegPart />} />
+        <Route path='/management/currentpartner/:id?' element={<CurPart />} />
+        <Route path='/management/detail/:id?' element={<ManageDetail />} />
+        <Route path='/management/editdocx/:id?' element={<EditDocx />} />
+        <Route path='/recommendlist' element={<RecommendList />} />
+        <Route path='/partnership' element={<Partnership />} />
 
-            </Routes>
-        </BrowserRouter>
-    )
+        {/* Register */}
+        <Route path='/register/:type' element={<Register />} />
+        <Route path='/register/:type' element={<Register />} />
+
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App

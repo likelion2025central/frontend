@@ -24,7 +24,7 @@ const Nav = () => {
                             <Link to='/'>제휴 등록하기</Link>
                         </>
                     )}
-                    <Link to='/'>나의 제휴 관리하기</Link>
+                    <Link to='/management'>나의 제휴 관리하기</Link>
                 </div>
             }
         </div>

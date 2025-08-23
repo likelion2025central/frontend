@@ -43,3 +43,44 @@ button {
 ::placeholder {
     color: #C9C9C9;
 }
+
+//공통 텍스트
+.text {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -1.1%;
+    line-height: 150%;
+}
+
+//공통 버튼
+.button_nomal {
+    width: 320px;
+    height: 50px;
+    padding: 0 10px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -1.1%;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 15px;
+    background: var(--white);
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+
+    .icon {
+        right: 10px;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        background: url("../../img/commons/button_detail.svg") no-repeat center;
+        background-size: contain;
+    }
+
+    &:hover {
+        background: var(--orange);
+
+        .icon {
+            background: url("../../img/commons/button_detail_white.svg") no-repeat center;
+        }
+    }
+}

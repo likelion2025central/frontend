@@ -9,3 +9,15 @@
 @use "section/section";
 @use "section/login";
 @use "section/normal";
+@use "section/register";
+
+@use "management/mancommon";
+@use "management/regpart";
+@use "management/curpart";
+@use "management/detail";
+@use "management/editdocx";
+
+@use "recommend/recommend";
+@use "recommend/modal";
+
+@use "partnership/currentlist";

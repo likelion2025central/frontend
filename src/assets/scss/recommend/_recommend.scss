@@ -1,0 +1,178 @@
+.recommendlist_wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .logo {
+        position: absolute;
+        width: 111px;
+        z-index: 100;
+        height: 24px;
+        top: 57px;
+        left: 26px;
+        cursor: pointer;
+
+    }
+
+    .contents {
+        width: 320px;
+        position: absolute;
+        top: 165px;
+        width: 320px;
+
+        .title {
+
+            color: var(--black);
+            font-size: 20px;
+            font-weight: 700;
+            border-left: 4px solid var(--orange);
+            padding-left: 13px;
+            display: flex;
+            align-items: center;
+
+            .tag {
+                height: 26px;
+                padding: 0 8px;
+                font-size: 12px;
+                color: var(--white);
+                font-weight: 500;
+                background-color: var(--orange);
+                border-radius: 6px;
+                gap: 5px;
+                align-items: center;
+                margin-left: 10px;
+                display: flex;
+
+                img {
+                    width: 10px;
+                }
+            }
+
+        }
+
+        .list_wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+
+            .swiper-pagination {
+                position: absolute;
+
+            }
+
+            .swiper-pagination-bullet {
+                background-color: var(--orange);
+            }
+
+            .swiper {
+                padding-bottom: 36px;
+                position: relative;
+                width: 340px;
+
+            }
+
+        }
+
+        .box_nomal {
+            width: 320px;
+            height: 120px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: -1.1%;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 15px;
+            background: var(--white);
+            box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+            display: flex;
+            position: relative;
+
+            .checkbox {
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                z-index: 1000;
+                cursor: pointer;
+
+                img {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+
+            img {
+                width: 115px;
+                object-fit: cover;
+            }
+
+            .info {
+                display: flex;
+
+                align-items: center;
+                width: 210px;
+                padding: 0 10px;
+                justify-content: space-between;
+
+                .icon {
+                    right: 10px;
+                    position: absolute;
+                    width: 24px;
+                    height: 24px;
+                    background: url("../../img/commons/button_detail.svg") no-repeat center;
+                    background-size: contain;
+                }
+
+                .inner {
+
+                    display: flex;
+                    flex-direction: column;
+
+                    .name {
+                        font-size: 16px;
+                        font-weight: 600;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        line-height: normal;
+                        text-align: left;
+
+                        margin-bottom: 34px;
+                    }
+
+                    .cate {
+                        color: #B3B3B3;
+                        font-size: 8.4px;
+                        font-weight: 500;
+                        margin-bottom: 5px;
+                    }
+                }
+
+                .tag {
+                    max-width: 150px;
+                    line-height: 26px;
+                    height: 26px;
+                    padding: 0 8px;
+                    font-size: 12px;
+                    color: var(--orange);
+                    font-weight: 500;
+                    background-color: #FFF7E7;
+                    border-radius: 6px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    display: block;
+                    white-space: nowrap
+                }
+            }
+
+        }
+    }
+
+    .button_nomal {
+        position: absolute;
+        bottom: 60px;
+    }
+
+}

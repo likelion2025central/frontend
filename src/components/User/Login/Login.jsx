@@ -1,8 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../../assets/img/section/logo.svg'
 
 const Login = () => {
+    const navigation = useNavigate();
+
+    const onLogin = () => {
+        navigation('/main')
+    }
+
     return (
         <div className='Login_wrap container'>
             <div className="header">
@@ -23,7 +29,7 @@ const Login = () => {
                         <input type="password" placeholder='비밀번호를 입력하세요' />
                     </div>
                 </div>
-                <button>로그인</button>
+                <button onClick={() => { onLogin() }}>로그인</button>
             </div>
             <div className="footer">
                 <Link to='/join'>회원가입</Link>

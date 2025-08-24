@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
-
+import axios from 'axios'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
@@ -11,24 +11,44 @@ import CheckOff from "../../assets/img/commons/button_check_off.svg"
 import CheckOn from "../../assets/img/commons/button_check.svg"
 import Loading from './Loading'
 
-const RegPart = () => {
-    const items = [
-        ["카페", "전품목 10%", "공과대학"],
-        ["식당", "학생증 제시 시 20%", "인문대학"],
-        ["카페", "전품목 10%", "공과대학"],
-        ["식당", "학생증 제시 시 20%", "인문대학"],
-        ["카페", "전품목 10%", "공과대학"],
-        ["식당", "학생증 제시 시 20%", "인문대학"]
-    ]
 
+
+const RegPart = () => {
+    const BASE_URL = process.env.REACT_APP_API_BASE_URL
     const navigate = useNavigate();
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [items, setItems] = useState([])
+
+    useEffect(() => {
+        const token = localStorage.getItem("token") 
+
+        axios.get(`${BASE_URL}/council/association`, {
+            headers: {
+                Authorization: `Bearer ${token}`, 
+            },
+            params: {
+                page: 0,
+                size: 10
+            }
+        })
+            .then((res) => {
+                console.log("서버 응답:", res.data)
+                setItems(res.data || [])
+            })
+            .catch((err) => {
+                console.error("데이터 불러오기 실패:", err)
+            })
+    }, [BASE_URL])
+
 
     const pages = []
     for (let i = 0; i < items.length; i += 3) {
         pages.push(items.slice(i, i + 3))
     }
+
+
+
 
     return (
         <div className='regpart_wrap container'>
@@ -95,7 +115,7 @@ const RegPart = () => {
                 AI 매칭하기
             </div>
             {loading &&
-                <Loading Loading={loading}/>}
+                <Loading Loading={loading} />}
 
         </div>
     )

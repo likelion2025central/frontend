@@ -7,6 +7,9 @@
 
 // section
 @use "section/section";
+@use "section/login";
+@use "section/normal";
+@use "section/register";
 
 @use "management/mancommon";
 @use "management/regpart";

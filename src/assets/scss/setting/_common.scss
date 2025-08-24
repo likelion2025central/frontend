@@ -40,6 +40,10 @@ button {
     align-items: center;
 }
 
+::placeholder {
+    color: #C9C9C9;
+}
+
 //공통 텍스트
 .text {
     font-weight: 600;
@@ -71,8 +75,10 @@ button {
         background: url("../../img/commons/button_detail.svg") no-repeat center;
         background-size: contain;
     }
+
     &:hover {
         background: var(--orange);
+
         .icon {
             background: url("../../img/commons/button_detail_white.svg") no-repeat center;
         }

@@ -1,0 +1,59 @@
+.Register_wrap {
+    z-index: 1;
+    padding: 58px 27px 45px;
+
+    .header {
+        margin-bottom: 34px;
+    }
+
+    .main {
+        .kind {
+
+            >div {
+                position: relative;
+
+                img {
+                    right: 9px;
+                    width: 24px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    position: absolute;
+                }
+
+            }
+        }
+
+        .etc {
+            margin-bottom: 37px;
+        }
+
+        .put_picture {
+            input {
+                display: none;
+            }
+
+            label {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-image: url(../../img/section/img_input.png);
+                height: 200px;
+                width: 100%;
+                background-position: center;
+                background-size: cover;
+
+                img {
+                    width: 24px;
+                }
+
+                .see {
+                    padding: 2px;
+                    width: inherit;
+                    height: inherit;
+                    border-radius: 10px;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}

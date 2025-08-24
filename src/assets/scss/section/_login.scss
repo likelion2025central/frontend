@@ -159,12 +159,24 @@
             margin: 0 10px;
         }
     }
+
+    .full {
+        font-weight: 600;
+        background-color: var(--orange) !important;
+        color: var(--black) !important;
+    }
 }
 
 .Join_Student_wrap {
     padding: 58px 30px 45px;
     position: relative;
     z-index: 1000;
+
+    .full {
+        font-weight: 600;
+        background-color: var(--orange) !important;
+        color: var(--black) !important;
+    }
 
     >button {
         margin-bottom: 28px;
@@ -264,6 +276,18 @@
             }
         }
 
+        .userid {
+            div {
+                input {
+                    width: 240px;
+                }
+
+                button {
+                    width: 70px;
+                }
+            }
+        }
+
         .userpass,
         .userpass_re {
 
@@ -307,6 +331,8 @@
             color: #00000066;
         }
     }
+
+
 
     .popup_wrap {
         position: absolute;

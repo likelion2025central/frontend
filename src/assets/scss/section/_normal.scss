@@ -86,6 +86,7 @@
         }
 
         >p {
+            text-align: center;
             font-size: 14px;
             color: var(--orange);
             font-weight: 600;
@@ -188,6 +189,7 @@
             border-radius: 28px;
 
             img {
+                border-radius: 10px;
                 width: 280px;
                 height: 175px;
                 object-fit: cover;

@@ -1,69 +1,96 @@
 import React, { useEffect, useState } from 'react'
 import Down from '../../assets/img/section/button_donw.svg'
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import Camera from '../../assets/img/section/button_camera.svg'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-const Registser_Student = () => {
+const Register_Store = () => {
     const baseURL = process.env.REACT_APP_API_BASE_URL
-    const token = localStorage.getItem('role');
+    const token = localStorage.getItem('role')
     const navigation = useNavigate();
+    const [preview, setPreview] = useState(null);
     const [industry, setIndustry] = useState('');
     const [boon, setBoon] = useState('');
     const [period, setPeriod] = useState('');
     const [num, setNum] = useState(0);
     const [targetSchool, setTargetSchool] = useState('');
-    const [targetCollege, setTargetCollege] = useState('');
-    const [targetDepartment, setTargetDepartment] = useState('');
     const [significant, setSignificant] = useState('');
+    const [image, setImage] = useState('');
     const [full, setFull] = useState(false);
 
+    const SeeImage = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    useEffect(() => {
+        if (industry && boon && period && num && targetSchool && significant) {
+            setFull(true);
+        } else {
+            setFull(false);
+        }
+    }, [industry, boon, period, num, targetSchool, significant]);
+
     const onWrite = () => {
-        if (!(industry && boon && period && num && targetSchool && targetCollege && targetDepartment && significant)) {
+        if (!(industry && boon && period && num && targetSchool && significant)) {
             alert("모든 칸을 채워주세요.");
             return
         }
 
-        const body = {
-            "industry": industry,
-            "boon": boon,
-            "period": period,
-            "num": num,
-            "targetSchool": targetSchool,
-            "targetCollege": targetCollege,
-            "targetDepartment": targetDepartment,
-            "significant": significant
-        }
+        const formData = new FormData();
+        formData.append("industry", industry);
+        formData.append("boon", boon);
+        formData.append("period", period);
+        formData.append("num", num);
+        formData.append("targetSchool", targetSchool);
+        formData.append("significant", significant);
+        formData.append("image", image);
 
-        axios.post(`${baseURL}/council/association/register`, body, {
+        axios.post(`${baseURL}/boss/association/register`, formData, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data"
             }
         })
             .then((res) => {
                 if(res.status === 201){
-                    alert(res.data.message);
+                    alert(res.data.message)
                     navigation('/main')
                 }
             })
             .catch((err) => {
                 console.log(err)
-            })
-    }
-
-    useEffect(() => {
-        if (industry && boon && period && num && targetSchool && targetCollege && targetDepartment && significant) {
-            setFull(true);
-        } else {
-            setFull(false);
-        }
-    }, [industry, boon, period, num, targetSchool, targetCollege, targetDepartment, significant]);
-
+            });
+    };
 
     return (
+
         <div className="main">
             <h2>제휴 등록하기</h2>
+            <div className='put_picture'>
+                <input
+                    type="file"
+                    id="picture"
+                    accept="image/*"
+                    onChange={SeeImage}
+                />
+                <label htmlFor="picture">
+                    {preview ? (
+                        <img className='see' src={preview} alt="미리보기" />
+                    ) : (
+                        <img src={Camera} alt="업로드 버튼" />
+                    )}
+                </label>
+            </div>
             <div className='kind'>
-                <h2>희망 업종</h2>
+                <h2>업종</h2>
                 <div>
                     <select value={industry} onChange={(e) => { setIndustry(e.target.value) }} >
                         <option value=""></option>
@@ -77,7 +104,7 @@ const Registser_Student = () => {
                 </div>
             </div>
             <div className='kind'>
-                <h2>희망 혜택</h2>
+                <h2>혜택</h2>
                 <div>
                     <select value={boon} onChange={(e) => { setBoon(e.target.value) }} >
                         <option value=""></option>
@@ -101,35 +128,19 @@ const Registser_Student = () => {
                     <img src={Down} alt="" />
                 </div>
             </div>
-            <div className="college">
-                <h2>제휴 대상</h2>
+            <div className='kind'>
+                <h2>희망 대학</h2>
                 <div>
-                    <div>
-                        <select value={targetSchool} onChange={(e) => { setTargetSchool(e.target.value) }} >
-                            <option value="">OO대학교</option>
-                            <option value="성신여자대학교">성신여자대학교</option>
-                        </select>
-                        <img src={Down} alt="" />
-                    </div>
-                    <div>
-                        <select value={targetCollege} onChange={(e) => { setTargetCollege(e.target.value) }} >
-                            <option value="">OO대학</option>
-                            <option value="공학대학">공학대학</option>
-                        </select>
-                        <img src={Down} alt="" />
-                    </div>
-                </div>
-                <div className='major'>
-                    <select value={targetDepartment} onChange={(e) => { setTargetDepartment(e.target.value) }} >
-                        <option value="">OO학과</option>
-                        <option value="컴퓨터공학과">컴퓨터공학과</option>
+                    <select value={targetSchool} onChange={(e) => { setTargetSchool(e.target.value) }} >
+                        <option value=""></option>
+                        <option value="성신여자대학교">성신여자대학교</option>
                     </select>
                     <img src={Down} alt="" />
                 </div>
             </div>
             <div className="phone">
-                <h2>제휴 인원</h2>
-                <input value={num} onChange={(e) => setNum(Number(e.target.value))} type="number" placeholder='n명' />
+                <h2>희망 제휴 인원</h2>
+                <input value={num} onChange={(e) => setNum(Number(e.target.value))} type="number" placeholder='n명 이상, 단과대 단위 등' />
             </div>
             <div className="etc">
                 <h2>특이사항</h2>
@@ -140,4 +151,4 @@ const Registser_Student = () => {
     )
 }
 
-export default Registser_Student
+export default Register_Store

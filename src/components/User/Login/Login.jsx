@@ -5,8 +5,8 @@ import axios from 'axios'
 
 const Login = () => {
     const baseURL = process.env.REACT_APP_API_BASE_URL
-    const [id, setId] = useState();
-    const [pass, setPass] = useState();
+    const [id, setId] = useState('');
+    const [pass, setPass] = useState('');
     const navigation = useNavigate();
 
     const onLogin = () => {
@@ -20,7 +20,10 @@ const Login = () => {
             "password": pass
         })
             .then((res) => {
-                console.log(res.status)
+                console.log(res)
+                if(res.status === 200){
+                    localStorage.setItem('role', res.data.data.token)
+                }
             })
             .catch((err) => {
                 console.log(err)

@@ -44,7 +44,7 @@ const ConfirmList = ({ writeId }) => {
         const upperRole = role.toUpperCase()
         const oppositeRole = upperRole === "COUNCIL" ? "BOSS" : "COUNCIL"
 
-        axios.get(`${BASE_URL}/associations/papers/council/confirm-waiting`, {
+        axios.get(`${BASE_URL}/associations/papers/${role}/confirm-waiting`, {
             headers: { Authorization: `Bearer ${token}` },
             params: {
                 requester: oppositeRole,
@@ -58,7 +58,7 @@ const ConfirmList = ({ writeId }) => {
             })
             .catch((err) => console.error("받은 요청 실패:", err))
 
-        axios.get(`${BASE_URL}/associations/papers/council/confirm-waiting`, {
+        axios.get(`${BASE_URL}/associations/papers/${role}/confirm-waiting`, {
             headers: { Authorization: `Bearer ${token}` },
             params: {
                 requester: upperRole,

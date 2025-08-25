@@ -36,7 +36,7 @@ const Partnership = () => {
   return (
     <div className='partnership_wrap container'>
       <div className="hd">
-        <img src={Arrow} alt="" className="b_btn"  />
+        <img src={Arrow} alt="" className="b_btn" onClick={() => navigate(-1)}  />
         <div className="title">제휴 현황 보기</div>
       </div>
 

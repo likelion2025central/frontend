@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Register_Store = () => {
     const baseURL = process.env.REACT_APP_API_BASE_URL
-    const token = localStorage.getItem('role')
+    const token = localStorage.getItem('token')
     const navigation = useNavigate();
     const [preview, setPreview] = useState(null);
     const [industry, setIndustry] = useState('');

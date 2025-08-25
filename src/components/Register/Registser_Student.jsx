@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Registser_Student = () => {
     const baseURL = process.env.REACT_APP_API_BASE_URL
-    const token = localStorage.getItem('role');
+    const token = localStorage.getItem('token');
     const navigation = useNavigate();
     const [industry, setIndustry] = useState('');
     const [boon, setBoon] = useState('');

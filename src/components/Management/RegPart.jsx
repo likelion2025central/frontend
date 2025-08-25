@@ -57,13 +57,14 @@ const RegPart = () => {
           <img src={Back} alt="" />
         </div>
         등록한 제휴 관리하기
-      </div>
+      </div> 
+      <div className="list_wrap">
 
       {loading ? (
         <div className="loading">불러오는 중...</div>
       ) : (
         <>
-          <div className="list_wrap">
+         
             {items.length === 0 ? (
               <div className="empty">등록된 제휴가 없습니다.</div>
             ) : (
@@ -123,7 +124,9 @@ const RegPart = () => {
                 <div className="swiper-pagination"></div>
               </Swiper>
             )}
-          </div>
+        
+           </>
+      )}
 
           <div
             className="button_nomal"
@@ -142,8 +145,7 @@ const RegPart = () => {
           >
             AI 매칭하기
           </div>
-        </>
-      )}
+         </div>
 
       {showDetail && (
         <ManageDetail item={selectedItem} onClose={() => setShowDetail(false)} />

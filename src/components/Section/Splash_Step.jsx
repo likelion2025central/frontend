@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Back from '../../assets/img/section/button_back.svg'
 
 const Splash_Step = () => {
+    
     const navigation = useNavigate();
 
     const onBack = () => {

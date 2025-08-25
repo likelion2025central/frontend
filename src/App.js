@@ -14,11 +14,11 @@ import Main from './components/Section/Main'
 import Management from './components/Management/Management'
 import RegPart from './components/Management/RegPart'
 import CurPart from './components/Management/CurPart'
-import EditDocx from './components/Management/EditDocx'
 import RecommendList from './components/Recommend/RecommendList'
 import ManageDetail from './components/Management/ManageDetail'
 import Partnership from './components/Partnership/Partnership'
 import Register from './components/Register/Register'
+import Associations from './components/Partnership/Associations'
 
 const App = () => {
   return (
@@ -45,9 +45,11 @@ const App = () => {
         <Route path='/management/regpart' element={<RegPart />} />
         <Route path='/management/currentpartner/:id?' element={<CurPart />} />
         <Route path='/management/detail/:id?' element={<ManageDetail />} />
-        <Route path='/management/editdocx/:id?' element={<EditDocx />} />
-        <Route path='/recommendlist' element={<RecommendList />} />
+        <Route path='/recommendlist/:id' element={<RecommendList />} />
         <Route path='/partnership' element={<Partnership />} />
+        <Route path='/partnership/write/:id' element={<Partnership />} />
+        <Route path='/partnership/detail/:id' element={<Associations />} />
+
 
         {/* Register */}
         <Route path='/register/:type' element={<Register />} />

@@ -1,42 +1,95 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-const ManageDetail = () => {
-  return (
-    <div className='managedetail_wrap container' >
-        <div className="wrap">
-            <img src="" alt="" />
-            <div className="info">
-                <div className="name">파도의숲</div>
-                <div className="cate">010-3434-3434</div>
+const ManageDetail = ({ item, onClose }) => {
+    const BASE_URL = process.env.REACT_APP_API_BASE_URL
+    const [user, setUser] = useState(null)
+    const token = localStorage.getItem("token")
+    const role = localStorage.getItem("role").toLocaleLowerCase()
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}/users/me`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then((res) => {
+                console.log("서버 응답:", res.data)
+                setUser(res.data)
+            })
+            .catch((err) => {
+                console.error("데이터 불러오기 실패:", err)
+            })
+    }, [BASE_URL])
+    return (
+        <div className='managedetail_wrap container' >
+            <div className="wrap">
+                {(role === "council") ?
+                    <>
+                        <div className="info">
+                            <div className="name">{item.targetSchool} {item.targetCollege} {item.targetDepartment}</div>
+                            <div className="cate">{user?.council?.email}</div>
+                        </div>
+                        <div className="table_list">
+                            <div className="table">
+                                <div className="section">업종</div>
+                                <p>{item.industry}</p>
+                            </div>
+                            <div className="table">
+                                <div className="section">혜택</div>
+                                <p>{item.boon}</p>
+                            </div>
+                            <div className="table">
+                                <div className="section">기간</div>
+                                <p>{item.period}</p>
+                            </div>
+                            <div className="table">
+                                <div className="section">제휴 희망 인원</div>
+                                <p>{item.num} 명</p>
+                            </div>
+                            <div className="table note">
+                                <div className="section">특이사항</div>
+                                <p>{item.significant}</p>
+                            </div>
+
+                        </div>
+                    </>
+                    :
+                    <>
+                        <img src={item.imgUrl} alt="" />
+                        <div className="info">
+                            <div className="name">{user?.boss?.storeName}</div>
+                            <div className="cate">{user?.boss?.phone}</div>
+                        </div>
+                        <div className="table_list">
+                            <div className="table">
+                                <div className="section">업종</div>
+                                <p>{item.industry}</p>
+                            </div>
+                            <div className="table">
+                                <div className="section">혜택</div>
+                                <p>{item.boon}</p>
+                            </div>
+                            <div className="table">
+                                <div className="section">기간</div>
+                                <p>{item.period}</p>
+                            </div>
+                            <div className="table">
+                                <div className="section">제휴 희망 인원</div>
+                                <p>{item.num} 명</p>
+                            </div>
+                            <div className="table note">
+                                <div className="section">특이사항</div>
+                                <p>{item.significant}</p>
+                            </div>
+
+                        </div>
+
+                    </>}
+
+                <div className="btn" onClick={onClose}>확인</div>
             </div>
-            <div className="table_list">
-                <div className="table">
-                    <div className="section">업종</div>
-                    <p>카페</p>
-                </div>
-                 <div className="table">
-                    <div className="section">혜택</div>
-                    <p>카페</p>
-                </div>
-                 <div className="table">
-                    <div className="section">기간</div>
-                    <p>카페</p>
-                </div>
-                 <div className="table">
-                    <div className="section">제휴 희망 인원</div>
-                    <p>카페</p>
-                </div>
-                 <div className="table note">
-                    <div className="section">특이사항</div>
-                    <p>카페</p>
-                </div>
-                 
-            </div>
-            <div className="btn">확인</div>
+
         </div>
-      
-    </div>
-  )
+    )
 }
 
 export default ManageDetail

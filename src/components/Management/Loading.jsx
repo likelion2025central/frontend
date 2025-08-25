@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Character from "../../assets/img/commons/img_character_worry.png"
 
-const Loading = ({ Loading }) => {
+const Loading = ({ Loading}) => {
   const [dots, setDots] = useState("")
   const navigate = useNavigate()
 

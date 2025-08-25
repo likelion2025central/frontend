@@ -85,7 +85,7 @@
 
     .main_contents {
         width: inherit;
-        height: 612px;
+        height: calc(100vh - 200px);
         position: absolute;
         overflow: scroll;
         display: flex;

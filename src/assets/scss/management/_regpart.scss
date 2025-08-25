@@ -40,6 +40,8 @@
 
         .swiper-pagination {
             position: absolute;
+            display: flex;
+            justify-content: center;
 
         }
 
@@ -85,8 +87,9 @@
                     display: flex;
                     flex-wrap: wrap;
                     gap: 4px;
-                    padding: 0 10px;
-                    height: 56px;
+                    padding: 5PX 10px;
+                    height: 60px;
+                    overflow: scroll;
 
                     .list_item {
                         max-width: 150px;
@@ -116,7 +119,7 @@
                     display: flex;
                     gap: 5px;
 
-                    a {
+                    .btn {
                         display: inline-flex;
                         padding: 4px 8px;
                         justify-content: center;
@@ -128,6 +131,7 @@
                         background-color: var(--orange);
                         line-height: 150%;
                         border-radius: 6px;
+                        cursor: pointer;
 
                     }
                 }

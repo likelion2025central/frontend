@@ -1,12 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-const ContactList = () => {
+const ContactList = ({ onConfirm }) => {
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL
+  const [list, setList] = useState([])
+  const token = localStorage.getItem("token")
+  const role = localStorage.getItem("role").toLowerCase()
+  const navigate = useNavigate()
+  useEffect(() => {
+    axios.get(`${BASE_URL}/${role}/requests/negotiating`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        page: 0,
+        size: 100,
+      },
+    })
+      .then((res) => {
+        console.log("서버 응답:", res.data)
+        setList(res.data.content || [])
 
-  const list = ["파도의 숲", "푸른 하늘", "초록 바람", "푸른 바다"]
+      })
+      .catch((err) => {
+        console.error("데이터 불러오기 실패:", err)
+      })
+
+  }, [BASE_URL])
 
   const chunkArray = (arr, size) => {
     const chunks = []
@@ -32,13 +57,24 @@ const ContactList = () => {
       >
         {pages.map((page, pageIndex) => (
           <SwiperSlide key={pageIndex}>
-            {page.map((name, idx) => (
-              <div className="button_nomal" key={idx} style={{ marginBottom: '12px' }}>
+            {page.map((item, idx) => (
+              <div className="button_nomal" key={idx} style={{ marginBottom: '12px' }} onClick={() => navigate(`/partnership/write/${item.associationId}`)}
+
+              >
                 <div className="wrap">
-                  <div className="name">{name}</div>
-                  <div className="btn">제휴 확정하기 →</div>
+                  <div className="name">{role === "council"
+                    ? `${item.storeName}`
+                    : `${item.schoolName} ${item.college} ${item.department}`
+                  }</div>
+                  <div
+                    className="btn"
+
+                  >
+                    제휴 확정하기 →
+                  </div>
+
                 </div>
-                <div className="icon"></div>
+                <div className="icon" ></div>
               </div>
             ))}
           </SwiperSlide>

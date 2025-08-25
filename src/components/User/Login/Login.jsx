@@ -16,18 +16,29 @@ const Login = () => {
         }
 
         axios.post(`${baseURL}/users/login`, {
-            "username": id,
-            "password": pass
+            username: id,
+            password: pass
         })
             .then((res) => {
                 console.log(res.status)
+                console.log("서버 응답:", res.data)
+
+                const token = res.data.data.token      
+                const role = res.data.data.role       
+
+
+                localStorage.removeItem("token")
+                localStorage.setItem("token", token) 
+                localStorage.setItem("role", role)   
+
+                navigation('/main')
             })
             .catch((err) => {
-                console.log(err)
+                console.error(err)
+                alert("로그인 실패! 아이디/비밀번호를 확인하세요.")
             })
-
-        navigation('/main');
     }
+
 
     return (
         <div className='Login_wrap container'>

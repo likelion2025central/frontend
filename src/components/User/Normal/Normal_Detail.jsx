@@ -17,7 +17,7 @@ const Normal_Detail = () => {
     const [list, setList] = useState([]);
     const [map, setMap] = useState(null);
 
-    // Kakao SDK 로드
+ 
     useEffect(() => {
         const script = document.createElement("script");
         script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${jsKey}&autoload=false&libraries=services`;

@@ -93,26 +93,41 @@ const Normal_Detail = () => {
                         const { x, y } = data[0];
                         const position = new window.kakao.maps.LatLng(y, x);
 
-                        const marker = new window.kakao.maps.Marker({
+                        // CustomOverlay 생성
+                        const content = `
+                        <div class="marker-wrap">
+                        <div class="kakao-marker">
+                            ${item.storeName}
+                        </div>
+                        <div class="marker"></div>
+                        </div>
+                    `;
+                        const customMarker = new window.kakao.maps.CustomOverlay({
                             map,
                             position,
+                            content,
+                            yAnchor: 1,
                         });
 
+                        // 클릭 시 InfoWindow
                         const infowindow = new window.kakao.maps.InfoWindow({
                             content: `<div style="padding:5px;font-size:12px;">${item.storeName}</div>`,
                         });
 
-                        window.kakao.maps.event.addListener(marker, "click", () => {
-                            infowindow.open(map, marker);
+                        // CustomOverlay 클릭 이벤트
+                        window.kakao.maps.event.addListener(customMarker, "click", () => {
+                            infowindow.open(map, customMarker);
                         });
 
+                        // 지도 bounds 확장
                         bounds.extend(position);
-                        map.setBounds(bounds); 
+                        map.setBounds(bounds);
                     }
                 });
             });
         }
     }, [map, list]);
+
 
     return (
         <div className="Normal_Detail_wrap container Login_wrap">

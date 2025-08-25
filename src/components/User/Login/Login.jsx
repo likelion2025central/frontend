@@ -22,7 +22,8 @@ const Login = () => {
             .then((res) => {
                 console.log(res)
                 if(res.status === 200){
-                    localStorage.setItem('role', res.data.data.token)
+                    localStorage.setItem('token', res.data.data.token)
+                    localStorage.setItem('role', res.data.data.role)
                 }
             })
             .catch((err) => {

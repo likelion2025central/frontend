@@ -6,6 +6,7 @@ import Register_Store from './Register_Store'
 
 const Register = () => {
     const params = useParams();
+    const role = localStorage.getItem('role')
 
     return (
         <div className='Register_wrap container Join_Student_wrap Login_wrap'>
@@ -15,7 +16,7 @@ const Register = () => {
                 </Link>
                 <div></div>
             </div>
-            {params.type === 'student' ? (
+            {role === 'student' ? (
                 <Registser_Student />
             ) : (
                 <Register_Store />

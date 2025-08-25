@@ -53,7 +53,6 @@ const App = () => {
 
         {/* Register */}
         <Route path='/register/:type' element={<Register />} />
-        <Route path='/register/:type' element={<Register />} />
 
       </Routes>
     </BrowserRouter>

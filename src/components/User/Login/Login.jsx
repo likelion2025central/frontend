@@ -24,6 +24,7 @@ const Login = () => {
                 if(res.status === 200){
                     localStorage.setItem('token', res.data.data.token)
                     localStorage.setItem('role', res.data.data.role)
+                    navigation('/main')
                 }
             })
             .catch((err) => {
@@ -57,7 +58,6 @@ const Login = () => {
             </div>
             <div className="footer">
                 <Link to='/join'>회원가입</Link>
-                <Link to='/join'>비밀번호 재설정</Link>
             </div>
         </div>
     )

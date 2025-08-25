@@ -20,6 +20,9 @@ const Join_Store = () => {
     const [email, setEmail] = useState('');
     const [emailok, setEmailok] = useState(false);
     const [emailcode, setEmailCode] = useState('');
+    const [password, setPassword] = useState('password');
+    const [passwordre, setPasswordre] = useState('password');
+    const [same, setSame] = useState(false)
     const baseURL = process.env.REACT_APP_API_BASE_URL
 
     const navigation = useNavigate();
@@ -109,6 +112,31 @@ const Join_Store = () => {
             })
     }
 
+    
+    const changeType = () => {
+        if (password === 'password') {
+            setPassword('text')
+        } else {
+            setPassword('password')
+        }
+    }
+
+    const changeTypere = () => {
+        if (password === 'password') {
+            setPasswordre('text')
+        } else {
+            setPasswordre('password')
+        }
+    }
+
+    useEffect(() => {
+        if (pass === passre) {
+            setSame(true)
+        } else {
+            setSame(false)
+        }
+    }, [pass, passre])
+
     useEffect(() => {
         if (name && email && phone && id && pass && passre) {
             setFull(true);
@@ -160,17 +188,17 @@ const Join_Store = () => {
                 <div className="userpass">
                     <h2>비밀번호</h2>
                     <div>
-                        <input type="password" value={pass} onChange={(e) => { setPass(e.target.value) }} placeholder='8자리 이상 특수문자 포함' />
-                        <button className='img_box'><img src={Seeon} alt="" /></button>
+                        <input value={pass} onChange={(e) => { setPass(e.target.value) }} type={password} placeholder='8자리 이상 특수문자 포함' />
+                        <button onClick={() => { changeType() }} className='img_box'><img src={password === 'password' ? Seeon : Seeoff} alt="" /></button>
                     </div>
                 </div>
                 <div className="userpass_re">
                     <h2>비밀번호 재확인</h2>
                     <div>
-                        <input type="password" value={passre} onChange={(e) => { setPassre(e.target.value) }} placeholder='8자리 이상 특수문자 포함' />
+                        <input value={passre} onChange={(e) => { setPassre(e.target.value) }} type={passwordre} placeholder='8자리 이상 특수문자 포함' />
                         <div className='img_box'>
-                            <img src={Checkoff} alt="" />
-                            <button><img src={Seeoff} alt="" /></button>
+                            <img src={same ? Checkon : Checkoff} alt="" />
+                            <button onClick={() => { changeTypere() }}><img src={passwordre === 'password' ? Seeon : Seeoff} alt="" /></button>
                         </div>
                     </div>
                 </div>

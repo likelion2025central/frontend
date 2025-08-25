@@ -16,7 +16,7 @@ const Register = () => {
                 </Link>
                 <div></div>
             </div>
-            {role === 'student' ? (
+            {role === 'COUNCIL' ? (
                 <Registser_Student />
             ) : (
                 <Register_Store />

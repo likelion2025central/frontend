@@ -14,6 +14,8 @@ const Main = () => {
         navigation('/')
     }
 
+    const role = localStorage.getItem('role')
+
     const rollItems = [
         {
             key: "students",
@@ -52,7 +54,7 @@ const Main = () => {
                 )}
 
                 <div className="btns">
-                    <Link to={rollItems[roll].btn1.path} className="btn button_nomal">
+                    <Link to={`/register/${role}`} className="btn button_nomal">
                         {rollItems[roll].btn1.text}
                         <div className="icon" />
                     </Link>

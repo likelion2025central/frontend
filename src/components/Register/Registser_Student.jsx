@@ -18,7 +18,7 @@ const Registser_Student = () => {
     const [full, setFull] = useState(false);
 
     const onWrite = () => {
-        if (!(industry && boon && period && num && targetSchool && targetCollege && targetDepartment && significant)) {
+        if (!(industry && boon && period && num && targetSchool && targetCollege  && significant)) {
             alert("모든 칸을 채워주세요.");
             return
         }
@@ -51,7 +51,7 @@ const Registser_Student = () => {
     }
 
     useEffect(() => {
-        if (industry && boon && period && num && targetSchool && targetCollege && targetDepartment && significant) {
+        if (industry && boon && period && num && targetSchool && targetCollege&& significant) {
             setFull(true);
         } else {
             setFull(false);

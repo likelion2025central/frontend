@@ -34,7 +34,7 @@ const Join_Student = () => {
     }
 
     const onJoin = () => {
-        if (!(col && fac && major && email && phone && id && pass && passre)) {
+        if (!(col && fac  && email && phone && id && pass && passre)) {
             alert("모든 정보를 빠짐없이 기입해주세요.");
             return
         }
@@ -171,9 +171,22 @@ const Join_Student = () => {
                         </div>
                     </div>
                     <div className='major'>
-                        <select value={major} onChange={(e) => setMajor(e.target.value)}>
-                            <option value="">OO학과</option>
+                        <select value={major} onChange={(e) => {
+                            setMajor(e.target.value === "null" ? null : e.target.value)
+                        }}  >
+                            <option value="" disabled>OO학과</option>
+                            <option value="null" >전체</option>
                             <option value="컴퓨터공학과">컴퓨터공학과</option>
+                            <option value="ai융합학부">ai융합학부</option>
+                            <option value="화학공학과">화학공학과</option>
+                            <option value="기계공학과">기계공학과</option>
+                            <option value="국어국문학과">국어국문학과</option>
+                            <option value="영어영문학과">영어영문학과</option>
+                            <option value="심리학과">심리학과</option>
+                            <option value="경영학과">경영학과</option>
+                            <option value="경제학과">경제학과</option>
+                            <option value="미술학과">미술학과</option>
+                            <option value="음악학과">음악학과</option>
                         </select>
                         <img src={Down} alt="" />
                     </div>

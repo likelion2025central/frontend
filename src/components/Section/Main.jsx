@@ -51,13 +51,19 @@ const Main = () => {
 
   let title = "캠퍼스와 지역 상권을\n 혜택으로 끈끈하게 연결하다!"
   if (role === "COUNCIL" && user) {
-    title = `${user.council.college} ${user.council.department} ${user.council.schoolName} 학생회를 환영합니다!`
+    const councilInfo = [
+      user?.council?.college,
+      user?.council?.department,
+      user?.council?.schoolName
+    ].filter(Boolean).join(" ")
+
+    title = `‘${councilInfo} 학생회’를 환영합니다!`
   } else if (role === "BOSS" && user) {
     title = `${user.boss.storeName} 사장님을 환영합니다!`
   }
 
 
- 
+
   const buttons = roleButtons[role] || roleButtons.DEFAULT
 
   return (

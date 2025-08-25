@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper/modules'
 import axios from 'axios'
-
-import 'swiper/css'
-import 'swiper/css/pagination'
 
 import Logo from "../../assets/img/commons/nav_logo.png"
 import Refresh from "../../assets/img/manage/refresh.svg"
@@ -34,9 +29,7 @@ const RecommendList = () => {
     const token = localStorage.getItem("token")
     const role = localStorage.getItem("role").toLowerCase()
     axios.get(`${BASE_URL}/match/${role}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
         console.log("추천 리스트 응답:", res.data)
@@ -56,17 +49,13 @@ const RecommendList = () => {
     fetchPartners()
   }, [id, BASE_URL])
 
-  const toggleCheck = (index) => {
+  const toggleCheck = (index, e) => {
+    e.stopPropagation() // 체크 시 모달 안 열리게
     setChecked((prev) => {
       const newState = [...prev]
       newState[index] = !newState[index]
       return newState
     })
-  }
-
-  const pages = []
-  for (let i = 0; i < partners.length; i += 3) {
-    pages.push(partners.slice(i, i + 3))
   }
 
   const handleRequest = () => {
@@ -77,6 +66,8 @@ const RecommendList = () => {
       alert("제휴사를 하나 이상 선택해주세요.")
     }
   }
+
+  const role = localStorage.getItem("role")?.toLowerCase()
 
   return (
     <div className='recommendlist_wrap container'>
@@ -97,80 +88,58 @@ const RecommendList = () => {
           </div>
         </div>
 
-        <div className="list_wrap">
-          <Swiper
-            modules={[Pagination]}
-            slidesPerView={1}
-            pagination={{ clickable: true }}
-          >
-            {pages.map((page, pageIndex) => (
-              <SwiperSlide key={pageIndex}>
-                <div className="slide_inner">
-                  {page.map((partner, idx) => {
-                    const partnerIndex = pageIndex * 3 + idx
-                    const role = localStorage.getItem("role")?.toLowerCase()
+        {/* ✅ 스크롤 리스트 */}
+        <div className="list_scroll">
+          {partners.map((partner, index) => (
+            <div
+              className="box_nomal"
+              key={`${role}-${index}-${partner.bossAssocId || partner.councilAssocId}`}
+              onClick={() => {
+                setSelectedPartner(partner)
+                setShowModal(true)
+              }}
+            >
+              <div
+                className="checkbox"
+                onClick={(e) => toggleCheck(index, e)}
+                style={{ cursor: "pointer" }}
+              >
+                <img src={checked[index] ? CheckOn : CheckOff} alt="" />
+              </div>
 
-                    return (
-                      <div
-                        className="box_nomal"
-                        key={role === "council" ? partner.bossAssocId : partner.councilAssocId}
-                        style={{ marginBottom: "16px" }}
-                        onClick={() => {
-                          setSelectedPartner(partner)
-                          setShowModal(true)
-                        }}
-                      >
-                        <div
-                          className="checkbox"
-                          onClick={() => toggleCheck(partnerIndex)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          <img src={checked[partnerIndex] ? CheckOn : CheckOff} alt="" />
-                        </div>
-
-
-                        {role === "council" ? (
-                          <>
-
-                            <img src={partner.storeImg} alt={partner.storeName} />
-                            <div className="info">
-                              <div className="inner">
-                                <div className="name">
-                                  <p className='cate'>{partner.industry}</p>
-                                  {partner.storeName}
-                                </div>
-                                <div className="tag">
-                                  추천도 {(partner.suitability * 100).toFixed(0)}%
-                                </div>
-                              </div>
-                              <div className="icon"></div>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-
-                            <div className="info shop">
-                              <div className="inner">
-                                <div className="name">
-
-                                  {`${partner.targetSchool} ${partner.targetCollege} ${partner.targetDepartment}`}
-                                </div>
-                                <div className="tag">
-                                  추천도 {(partner.suitability * 100).toFixed(0)}%
-                                </div>
-                              </div>
-                              <div className="icon"></div>
-                            </div>
-                          </>
-                        )}
+              {role === "council" ? (
+                <>
+                  <img src={partner.storeImg} alt={partner.storeName} />
+                  <div className="info">
+                    <div className="inner">
+                      <div className="name">
+                        <p className='cate'>{partner.industry}</p>
+                        {partner.storeName}
                       </div>
-                    )
-                  })}
-                </div>
-              </SwiperSlide>
-            ))}
-
-          </Swiper>
+                      <div className="tag">
+                        추천도 {(partner.suitability * 100).toFixed(0)}%
+                      </div>
+                    </div>
+                    <div className="icon"></div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="info shop">
+                    <div className="inner">
+                      <div className="name">
+                        {`${partner.targetSchool} ${partner.targetCollege} ${partner.targetDepartment}`}
+                      </div>
+                      <div className="tag">
+                        추천도 {(partner.suitability * 100).toFixed(0)}%
+                      </div>
+                    </div>
+                    <div className="icon"></div>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -183,19 +152,13 @@ const RecommendList = () => {
           id={id}
           partners={partners
             .filter((_, idx) => checked[idx])
-            .map(p => {
-              const role = localStorage.getItem("role")?.toLowerCase()
-
+            .map((p) => {
               if (role === "council") {
-
-                return {
-                  id: p.bossAssocId,
-                  name: p.storeName
-                }
+                return { id: p.bossAssocId, name: p.storeName }
               } else {
                 return {
                   id: p.councilAssocId,
-                  name: `${p.targetSchool} ${p.targetCollege} ${p.targetDepartment}`
+                  name: `${p.targetSchool} ${p.targetCollege} ${p.targetDepartment}`,
                 }
               }
             })}
@@ -204,10 +167,7 @@ const RecommendList = () => {
         />
       )}
 
-
-      {showSuccess && (
-        <Modal onClose={() => setShowSuccess(false)} />
-      )}
+      {showSuccess && <Modal onClose={() => setShowSuccess(false)} />}
 
       {showModal && (
         <Detail
@@ -218,7 +178,6 @@ const RecommendList = () => {
           }}
         />
       )}
-
     </div>
   )
 }

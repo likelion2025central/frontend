@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/img/section/img_logo.png'
+import Logo from '../../assets/img/section/img_logo.svg'
 
 const Splash = () => {
 

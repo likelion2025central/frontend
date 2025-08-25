@@ -40,7 +40,7 @@ const Registser_Student = () => {
             }
         })
             .then((res) => {
-                if(res.status === 201){
+                if (res.status === 201) {
                     alert(res.data.message);
                     navigation('/main')
                 }
@@ -105,7 +105,7 @@ const Registser_Student = () => {
                 <h2>제휴 대상</h2>
                 <div>
                     <div>
-                        <select value={targetSchool} onChange={(e) => { setTargetSchool(e.target.value) }} >
+                        <select value={targetSchool} onChange={(e) => {setTargetSchool( e.target.value)}}  >
                             <option value="">OO대학교</option>
                             <option value="성신여자대학교">성신여자대학교</option>
                         </select>
@@ -113,16 +113,34 @@ const Registser_Student = () => {
                     </div>
                     <div>
                         <select value={targetCollege} onChange={(e) => { setTargetCollege(e.target.value) }} >
-                            <option value="">OO대학</option>
-                            <option value="공학대학">공학대학</option>
+                                <option value="" disabled>OO대학</option>
+                                <option value="공과대학">공과대학</option>
+                                <option value="인문대학">인문대학</option>
+                                <option value="사회과학대학">사회과학대학</option>
+                                <option value="자연과학대학">자연과학대학</option>
+                                <option value="예술대학">예술대학</option>
+                                <option value="경영대학">경영대학</option>
                         </select>
                         <img src={Down} alt="" />
                     </div>
                 </div>
                 <div className='major'>
-                    <select value={targetDepartment} onChange={(e) => { setTargetDepartment(e.target.value) }} >
-                        <option value="">OO학과</option>
+                    <select value={targetDepartment} onChange={(e) => {
+                            setTargetDepartment(e.target.value === "null" ? null : e.target.value)
+                        }}  >
+                        <option value="" disabled>OO학과</option>
+                        <option value="null" >전체</option>
                         <option value="컴퓨터공학과">컴퓨터공학과</option>
+                        <option value="ai융합학부">ai융합학부</option>
+                        <option value="화학공학과">화학공학과</option>
+                        <option value="기계공학과">기계공학과</option>
+                        <option value="국어국문학과">국어국문학과</option>
+                        <option value="영어영문학과">영어영문학과</option>
+                        <option value="심리학과">심리학과</option>
+                        <option value="경영학과">경영학과</option>
+                        <option value="경제학과">경제학과</option>
+                        <option value="미술학과">미술학과</option>
+                        <option value="음악학과">음악학과</option>
                     </select>
                     <img src={Down} alt="" />
                 </div>
